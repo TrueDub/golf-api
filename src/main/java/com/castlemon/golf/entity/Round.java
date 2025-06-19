@@ -1,5 +1,10 @@
 package com.castlemon.golf.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -10,7 +15,22 @@ import java.util.Objects;
 @Entity
 public class Round {
 
-    public Round(LocalDate date, String courseName, String tees, int slope, long courseRating, int score, int pcc, long diff, int holesPlayed) {
+    private @Id
+    @GeneratedValue int id;
+    private LocalDate date;
+    private String courseName;
+    private String tees;
+    private int slope;
+    private long courseRating;
+    private String score;
+    private int pcc;
+    private long diff;
+    private int holesPlayed;
+    private long handicap;
+    private int[] countingRounds;
+
+    public Round(LocalDate date, String courseName, String tees, int slope, long courseRating,
+                 String score, int pcc, long diff, int holesPlayed, long handicap, int[] countingRounds) {
         this.date = date;
         this.courseName = courseName;
         this.tees = tees;
@@ -20,23 +40,12 @@ public class Round {
         this.pcc = pcc;
         this.diff = diff;
         this.holesPlayed = holesPlayed;
+        this.handicap = handicap;
+        this.countingRounds = countingRounds;
     }
 
     public Round() {
     }
-
-    private @Id
-    @GeneratedValue int id;
-    private LocalDate date;
-    private String courseName;
-    private String tees;
-    private int slope;
-    private long courseRating;
-    private int score;
-    private int pcc;
-    private long diff;
-
-    private int holesPlayed;
 
     public int getId() {
         return id;
@@ -46,6 +55,9 @@ public class Round {
         this.id = id;
     }
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public LocalDate getDate() {
         return date;
     }
@@ -86,11 +98,11 @@ public class Round {
         this.courseRating = courseRating;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
@@ -116,6 +128,22 @@ public class Round {
 
     public void setHolesPlayed(int holesPlayed) {
         this.holesPlayed = holesPlayed;
+    }
+
+    public long getHandicap() {
+        return handicap;
+    }
+
+    public void setHandicap(long handicap) {
+        this.handicap = handicap;
+    }
+
+    public int[] getCountingRounds() {
+        return countingRounds;
+    }
+
+    public void setCountingRounds(int[] countingRounds) {
+        this.countingRounds = countingRounds;
     }
 
     @Override
