@@ -30,16 +30,17 @@ class LoadDatabase {
         int[] dummy = new int[0];
         ObjectMapper objectMapper = new ObjectMapper();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
-         objectMapper.registerModule(javaTimeModule);
+        objectMapper.registerModule(javaTimeModule);
 
         List<Round> rounds =
                 objectMapper.readValue(roundsFile.getContentAsString(Charset.defaultCharset()), new TypeReference<>() {
                 });
         log.info("Rounds size: " + rounds.size());
         return args -> {
-            for(Round round : rounds) {
-                log.info("Preloading " + repository.save(round));
+            for (Round round : rounds) {
+                repository.save(round);
             }
+            log.info("Preloaded all data");
         };
     }
 }

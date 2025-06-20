@@ -16,14 +16,13 @@ class RoundController {
         this.repository = repository;
     }
 
-    // Aggregate root
-    // tag::get-aggregate-root[]
+    @CrossOrigin()
     @GetMapping("/rounds")
     List<Round> all() {
         return repository.findAll();
     }
-    // end::get-aggregate-root[]
 
+    @CrossOrigin()
     @PostMapping("/rounds")
     Round newRound(@RequestBody Round newRound) {
         return repository.save(newRound);
