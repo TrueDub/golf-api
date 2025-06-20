@@ -21,16 +21,15 @@ public class Round {
     private String courseName;
     private String tees;
     private int slope;
-    private long courseRating;
+    private double courseRating;
     private String score;
     private int pcc;
-    private long diff;
+    private double diff;
     private int holesPlayed;
-    private long handicap;
-    private int[] countingRounds;
+    private double handicap;
 
-    public Round(LocalDate date, String courseName, String tees, int slope, long courseRating,
-                 String score, int pcc, long diff, int holesPlayed, long handicap, int[] countingRounds) {
+    public Round(LocalDate date, String courseName, String tees, int slope, double courseRating,
+                 String score, int pcc, double diff, int holesPlayed, double handicap) {
         this.date = date;
         this.courseName = courseName;
         this.tees = tees;
@@ -41,7 +40,6 @@ public class Round {
         this.diff = diff;
         this.holesPlayed = holesPlayed;
         this.handicap = handicap;
-        this.countingRounds = countingRounds;
     }
 
     public Round() {
@@ -90,11 +88,11 @@ public class Round {
         this.slope = slope;
     }
 
-    public long getCourseRating() {
+    public double getCourseRating() {
         return courseRating;
     }
 
-    public void setCourseRating(long courseRating) {
+    public void setCourseRating(double courseRating) {
         this.courseRating = courseRating;
     }
 
@@ -114,11 +112,11 @@ public class Round {
         this.pcc = pcc;
     }
 
-    public long getDiff() {
+    public double getDiff() {
         return diff;
     }
 
-    public void setDiff(long diff) {
+    public void setDiff(double diff) {
         this.diff = diff;
     }
 
@@ -130,20 +128,12 @@ public class Round {
         this.holesPlayed = holesPlayed;
     }
 
-    public long getHandicap() {
+    public double getHandicap() {
         return handicap;
     }
 
-    public void setHandicap(long handicap) {
+    public void setHandicap(double handicap) {
         this.handicap = handicap;
-    }
-
-    public int[] getCountingRounds() {
-        return countingRounds;
-    }
-
-    public void setCountingRounds(int[] countingRounds) {
-        this.countingRounds = countingRounds;
     }
 
     @Override

@@ -1,0 +1,44 @@
+[
+  {
+    "courseName": "Bunclody",
+    "tees": "Green",
+    "slope": 126,
+    "courseRating": 71.9
+  },
+  {
+    "courseName": "Lisheen Springs",
+    "tees": "Yellow",
+    "slope": 128,
+    "courseRating": 71.8
+  },
+  {
+    "courseName": "Corballis",
+    "tees": "White",
+    "slope": 108,
+    "courseRating": 64.3
+  },
+  {
+    "courseName": "Jameson Links Portmarnock",
+    "tees": "White",
+    "slope": 130,
+    "courseRating": 73.5
+  },
+  {
+    "courseName": "Bray",
+    "tees": "White",
+    "slope": 124,
+    "courseRating": 35
+  },
+  {
+    "courseName": "Macreddin",
+    "tees": "White",
+    "slope": 128,
+    "courseRating": 72.3
+  },
+  {
+    "courseName": "Gold Coast",
+    "tees": "White",
+    "slope": 124.0,
+    "courseRating": 70.2
+  }
+]

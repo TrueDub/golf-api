@@ -1,6 +1,8 @@
 package com.castlemon.golf;
 
+import com.castlemon.golf.entity.Course;
 import com.castlemon.golf.entity.Round;
+import com.castlemon.golf.repository.CourseRepository;
 import com.castlemon.golf.repository.RoundRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,10 +25,13 @@ class LoadDatabase {
     @Value("classpath:data/roundData.json")
     private Resource roundsFile;
 
+    @Value("classpath:data/courseData.json")
+    private Resource coursesFile;
+
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(RoundRepository repository) throws IOException {
+    CommandLineRunner initDatabase(RoundRepository roundRepository, CourseRepository courseRepository) throws IOException {
         int[] dummy = new int[0];
         ObjectMapper objectMapper = new ObjectMapper();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
@@ -35,10 +40,17 @@ class LoadDatabase {
         List<Round> rounds =
                 objectMapper.readValue(roundsFile.getContentAsString(Charset.defaultCharset()), new TypeReference<>() {
                 });
-        log.info("Rounds size: " + rounds.size());
+        List<Course> courses =
+                objectMapper.readValue(coursesFile.getContentAsString(Charset.defaultCharset()), new TypeReference<>() {
+                });
+        log.info("Rounds size : " + rounds.size());
+        log.info("Courses size: " + courses.size());
         return args -> {
             for (Round round : rounds) {
-                repository.save(round);
+                roundRepository.save(round);
+            }
+            for (Course course : courses) {
+                courseRepository.save(course);
             }
             log.info("Preloaded all data");
         };
